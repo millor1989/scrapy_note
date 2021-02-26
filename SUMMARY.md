@@ -6,5 +6,6 @@
   * [入门教程](first-steps/ru-men-jiao-cheng.md)
 * [基础概念](basic-concepts.md)
   * [命令行工具](basic-concepts/command-line-tool.md)
-* [其它](ohters.md)
+* [其它](others.md)
+  * [HTTP协议](others/http.md)
 * [外链](wai-lian.md)
