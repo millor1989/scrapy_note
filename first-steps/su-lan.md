@@ -1,6 +1,6 @@
 ### 速览
 
-尽管Scrapy最初是为网站获取（web scraping）而设计的，它也能用于使用APIs（比如Amazon Associates Web Services）提取数据或者作为一个通用目的的网络爬虫（web crawler）。
+尽管Scrapy最初是为网站获取（web scraping）而设计的，它也能用于使用APIs（比如Amazon Associates Web Services）提取数据（请求API的时候，是解析请求API的响应内容，比如json，而不是网页HTML）或者作为一个通用目的的网络爬虫（web crawler）。
 
 #### 1、Scrapy Spider例子
 
