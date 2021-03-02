@@ -24,13 +24,53 @@ HTTP 协议的**流程**：
 
 #### 2、HTTP 数据包
 
-HTTP 的请求数据包由三部分（状态行、请求头、请求体，请求头与请求体之间由**空行**隔开）组成。
+**HTTP 的请求数据包**由三部分（状态行、请求头、请求体，请求头与请求体之间由**空行**隔开）组成。
 
-- 状态行（请求行），包含了请求方法（GET、POST、PUT等）、请求URL、协议的版本和类型
-- 请求头（headers），一些键值对，一般由w3c定义，浏览器与web服务器之间都可以发送，表示特定的某种含义
-- 请求体，发送的数据
+- **状态行**（请求行），包含了请求方法（GET、POST、PUT等）、请求URL、协议的版本和类型，比如：
 
-HTTP 的响应数据包
+  ```
+  GET /search/getSolrAllPageByTitle?title=%E5%9%A9%B0 HTTP/1.1
+  ```
+
+- **请求头**（request headers），一些键值对，一般由w3c定义，浏览器与web服务器之间都可以发送，表示特定的某种含义，比如：
+
+  ```
+  Host: cmsapi.tom.com
+  Connection: keep-alive
+  Accept: application/json, text/javascript, */*; q=0.01
+  User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.123 Safari/537.36
+  DNT: 1
+  Origin: http://ent.tom.com
+  Referer: http://ent.tom.com/202103/1919561415.html
+  Accept-Encoding: gzip, deflate
+  Accept-Language: zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7
+  ```
+
+- **请求体**，发送的数据
+
+**HTTP 的响应数据包**同样由三部分组成，状态行、响应头、响应正文，响应头与响应正文之间由**空行**隔开。
+
+- **状态行**：协议版本、数字形式的状态代码和状态描述，各元素之间以空格分隔，比如：
+
+  ```
+  HTTP/1.1 200
+  ```
+
+- **响应头**（Response Headers）：服务器类型、日期、长度、内容类型等，比如：
+
+  ```
+  Server: nginx
+  Date: Tue, 02 Mar 2021 12:09:33 GMT
+  Content-Type: application/json;charset=UTF-8
+  Transfer-Encoding: chunked
+  Connection: keep-alive
+  Vary: Origin
+  Vary: Access-Control-Request-Method
+  Vary: Access-Control-Request-Headers
+  Access-Control-Allow-Origin: *
+  ```
+
+- 响应正文
 
 #### 3、HTTPS
 
@@ -87,3 +127,29 @@ HTTP/2（超文本传输协议第2版，最初命名为 HTTP 2.0），简称为h
 实际上HTTP2并没有改变HTTP1.x的语义，只是把原来HTTP1.x的header和body部分用二进制帧（frame）重新封装了一层而已。
 
 Python有`hyper`模块作为HTTP/2客户端（同时也是支持HTTP/1.1的）。
+
+HTTP/2 的请求头、响应头，相比HTTP 1会有不同。
+
+#### 5、HTTP 常见状态码
+
+**1xx**：提示信息——表示请求已收到，继续处理
+
+**2xx**：发送成功（200）
+
+**3xx**：重定向（302）
+
+**4xx**：客户端错误
+
+　　400.发送请求有语法错误
+
+　　401.访问页面没有授权
+
+　　403.没有权限访问该页面
+
+　　404.没有该页面
+
+**5xx**：服务端错误
+
+　　500.服务器内部异常
+
+　　504.服务器请求超时，没有返回结果
